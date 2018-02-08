@@ -1,8 +1,8 @@
 :root {
   --color-primary: black;
-  --color-secondary: grey;
-  --font-primary: "PT Serif", serif;
-  --font-secondary: "PT Sans", sans-serif;
+  --color-secondary: #bababa;
+  --font-primary: "Merriweather", serif;
+  --font-secondary: "Merriweather Sans", sans-serif;
 }
 
 html {
