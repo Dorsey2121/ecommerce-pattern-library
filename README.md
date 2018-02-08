@@ -1,6 +1,7 @@
 ---
 name:"Pro Sports Training"
 "https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i|Merriweather:300,300i,400,400i,700,700i,900,900i"
+---
 fonts:
   primary: |
     The Primary typeface represents a strong serif face with a large X-height.  This makes it very easy and pleasent to read on screens. This represents our company as it is clean and professional like our business.
@@ -18,13 +19,4 @@ colors:
   secondary: |
     The Secondary Color represents the secondary color in the logo.  Use it for accents and body banners.
 
-
-
-
-
-
-
-
-
----
 We are a hockey training facility that specializes in training younger athletes.
