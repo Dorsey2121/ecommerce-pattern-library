@@ -1,0 +1,11 @@
+:root {
+  --color-primary: black;
+  --color-secondary: grey;
+  --font-primary: "PT Serif", serif;
+  --font-secondary: "PT Sans", sans-serif;
+
+}
+
+html {
+  font-family: var(--font-primary)
+}
