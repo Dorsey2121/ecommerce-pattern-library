@@ -1,0 +1,55 @@
+.intro-banner {
+  height: 60vh;
+  position: relative;
+  background:
+    linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)) top left / cover no-repeat,
+    url("../../images/home-banner.jpg") center top / cover no-repeat;
+  box-shadow: var(--shadow-primary);
+  border-bottom: 2px solid var(--color-primary);
+  text-align: center;
+}
+
+.call-to-action-banners {
+  height: 30vh;
+  position: relative;
+  background:
+    linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)) top left / cover no-repeat,
+    url("../../images/call-to-action-banner-home.jpg") center / cover no-repeat;
+  box-shadow: var(--shadow-primary);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.banner-content {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  text-align: center;
+  width: 100%;
+}
+
+.action {
+  text-align: center;
+}
+
+@media only screen and (min-width: 38em) {
+
+  .intro-banner {
+    height: 80vh;
+  }
+
+  .banner-content {
+    text-align: left;
+    top: auto;
+    bottom: 0;
+    transform: translateY(0);
+  }
+
+  .call-to-action-banners {
+    height: 40vh;
+  }
+
+  .action {
+    text-align: center;
+  }
+
+}

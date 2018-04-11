@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-ca">
+<head>
+  <meta charset="utf-8">
+  <title>Checkout Card</title>
+  <meta name="handheldfriendly" content="true">
+  <meta name="mobileoptimized" content="240">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="../../common/modules.css" rel="stylesheet">
+  <link href="../../common/grid.css" rel="stylesheet">
+  <link href="../../common/type.css" rel="stylesheet">
+  <link href="../../common/theme.css" rel="stylesheet">
+  <link href="../buttons/buttons.css" rel="stylesheet">
+  <link href="../forms/forms.css" rel="stylesheet">
+  <link href="cards.css" rel="stylesheet">
+</head>
+<body>
+  <div class="card checkout-card grid grid-stretch relative island-1-4 content-fill" tabindex="0">
+    <div class="unit [ xs-1 m-1-4 ] island-1-4">
+      <div class="embed embed-1by1">
+        <img class="embed-item" src="../../images/clothing/b14.jpg" alt="">
+      </div>
+    </div>
+    <div class="content unit [ xs-1 m-3-4 ] island-1-4 island">
+      <h3 class="push-0 mega">New Balance Long Sleeve</h3>
+      <p class="push-1-2 content-fill milli">An athletic fitting shirt that is made of 100% polyester.</p>
+      <p class="exa sans bold push-0">$55</p>
+      <div class="push">
+        <label class="push-r-1-2 milli" for="number-input">Quantity</label>
+        <input type="number" class="resizedtextbox push-1-2" id="number-input" name="number-input" required>
+      </div>
+      <div class="push">
+        <a class="btn secondary-btn" href="#">Checkout</a>
+      </div>
+      <div class="absolute pin-tr island-1-2">
+        <a class="product-delete" href="#delete-item">
+          <i class="icon i-1rem">
+            <svg><use xlink:href="../../images/icons.svg#close" /></svg>
+          </i>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
