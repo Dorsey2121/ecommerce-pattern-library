@@ -1,0 +1,52 @@
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  border: 2px solid var(--color-primary);
+  border-radius: 0;
+  padding: .25rem;
+  height: auto;
+}
+
+select {
+  display: inline-block;
+  width: auto;
+  border: none;
+  border-radius: 0;
+  padding: 0 1.5rem 0 0;
+  height: auto;
+  color: var(--color-primary);
+}
+
+[type="radio"] + label::before {
+  border: 3px solid var(--color-primary);
+}
+
+[type="checkbox"] + label::before {
+  border: 3px solid var(--color-primary);
+}
+
+.is-validated input:invalid,
+.is-validated input[type="checkbox"]:invalid + label::before {
+  border-color: #f33;
+}
+
+.error-message {
+  display: none;
+  background-color: #fee;
+  color: #c33;
+}
+
+.error-message-highlighted,
+.error-message-highlighted h3 {
+  background-color: #c33;
+  color: #fff;
+}
+
+.is-validated > .error-message:first-child,
+.is-validated input:invalid + .error-message,
+.is-validated input:invalid + label + .error-message {
+  display: block;
+}

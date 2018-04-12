@@ -16,9 +16,14 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
   <style>
     :root {
+        --font-patternbot-primary: "PT serif", serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     }
 
+      html {
+        font-family: "PT serif", serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      }
   </style>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i|Merriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 </head>
 <body>
 
@@ -34,12 +39,19 @@
   <div class="patternbot-font-primary text-left">
 
     <section>
-      <h2 class="patternbot-color-body giga ">Primary colours</h2>
+      <h2 class="patternbot-color-body giga push-1-4">Primary colours</h2>
+        <div class="patternbot-max-length italic max-length">
+          <p>The primary color represents the primary color in the logo.
+Use it for headers, footers, buttons, and section banners.</p>
+
+        </div>
 
       <div class="patternbot-color-swatches patternbot-color-swatches-primary grid grid-stretch">
         <div class="unit xs-1-2" style="background-color:var(--color-primary, var(--color-primary))">&nbsp;</div>
         <div class="patternbot-color-swatches-fill unit xs-1-2" style="background-color:var(--color-primary, var(--color-primary))">
             <div style="background-color:var(--color-primary);">&nbsp;</div>
+            <div style="background-color:var(--color-primary-light);">&nbsp;</div>
+            <div style="background-color:var(--color-primary-dark);">&nbsp;</div>
         </div>
       </div>
 
@@ -58,7 +70,43 @@
                   </i>
                 </button>
               </li>
-              <li class="patternbot-color-swatch-labels-hex push-1-8"><code>#000000</code></li>
+              <li class="patternbot-color-swatch-labels-hex push-1-8"><code>#231f20</code></li>
+              <li class="patternbot-color-swatch-labels-rgba"><code>rgba(35, 31, 32, 1)</code></li>
+            </ul>
+          </li>
+          <li class="push">
+            <div class="push-1-2">
+              <i class="patternbot-color-swatches icon i-24" style="background-color:var(--color-primary-light);">&nbsp;</i>
+              <span class="icon-label">Primary light</span>
+            </div>
+            <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
+              <li class="push-1-8 relative">
+                <code>var(--color-primary-light)</code>
+                <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy color: --color-primary-light" aria-label="Copy color: --color-primary-light" data-clipboard-text="var(--color-primary-light)" hidden>
+                  <i class="icon i-18">
+                    <svg><use xlink:href="#icon-copy"></use></svg>
+                  </i>
+                </button>
+              </li>
+              <li class="patternbot-color-swatch-labels-hex push-1-8"><code>#333232</code></li>
+              <li class="patternbot-color-swatch-labels-rgba"><code>rgba(51, 50, 50, 1)</code></li>
+            </ul>
+          </li>
+          <li class="push">
+            <div class="push-1-2">
+              <i class="patternbot-color-swatches icon i-24" style="background-color:var(--color-primary-dark);">&nbsp;</i>
+              <span class="icon-label">Primary dark</span>
+            </div>
+            <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
+              <li class="push-1-8 relative">
+                <code>var(--color-primary-dark)</code>
+                <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy color: --color-primary-dark" aria-label="Copy color: --color-primary-dark" data-clipboard-text="var(--color-primary-dark)" hidden>
+                  <i class="icon i-18">
+                    <svg><use xlink:href="#icon-copy"></use></svg>
+                  </i>
+                </button>
+              </li>
+              <li class="patternbot-color-swatch-labels-hex push-1-8"><code>#000</code></li>
               <li class="patternbot-color-swatch-labels-rgba"><code>rgba(0, 0, 0, 1)</code></li>
             </ul>
           </li>
@@ -68,12 +116,18 @@
     <section>
       <hr class="patternbot-hr">
 
-      <h2 class="patternbot-color-body giga ">Secondary colours</h2>
+      <h2 class="patternbot-color-body giga push-1-4">Secondary colours</h2>
+        <div class="patternbot-max-length italic max-length">
+          <p>The Secondary Color represents the secondary color in the logo.  Use it for accents and cards.</p>
+
+        </div>
 
       <div class="patternbot-color-swatches patternbot-color-swatches-secondary grid grid-stretch">
         <div class="unit xs-1-2" style="background-color:var(--color-secondary, var(--color-secondary))">&nbsp;</div>
         <div class="patternbot-color-swatches-fill unit xs-1-2" style="background-color:var(--color-secondary, var(--color-secondary))">
             <div style="background-color:var(--color-secondary);">&nbsp;</div>
+            <div style="background-color:var(--color-secondary-dark);">&nbsp;</div>
+            <div style="background-color:var(--color-secondary-light);">&nbsp;</div>
         </div>
       </div>
 
@@ -92,8 +146,44 @@
                   </i>
                 </button>
               </li>
+              <li class="patternbot-color-swatch-labels-hex push-1-8"><code>#d6d7d7</code></li>
+              <li class="patternbot-color-swatch-labels-rgba"><code>rgba(214, 215, 215, 1)</code></li>
+            </ul>
+          </li>
+          <li class="push">
+            <div class="push-1-2">
+              <i class="patternbot-color-swatches icon i-24" style="background-color:var(--color-secondary-dark);">&nbsp;</i>
+              <span class="icon-label">Secondary dark</span>
+            </div>
+            <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
+              <li class="push-1-8 relative">
+                <code>var(--color-secondary-dark)</code>
+                <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy color: --color-secondary-dark" aria-label="Copy color: --color-secondary-dark" data-clipboard-text="var(--color-secondary-dark)" hidden>
+                  <i class="icon i-18">
+                    <svg><use xlink:href="#icon-copy"></use></svg>
+                  </i>
+                </button>
+              </li>
               <li class="patternbot-color-swatch-labels-hex push-1-8"><code>#bababa</code></li>
               <li class="patternbot-color-swatch-labels-rgba"><code>rgba(186, 186, 186, 1)</code></li>
+            </ul>
+          </li>
+          <li class="push">
+            <div class="push-1-2">
+              <i class="patternbot-color-swatches icon i-24" style="background-color:var(--color-secondary-light);">&nbsp;</i>
+              <span class="icon-label">Secondary light</span>
+            </div>
+            <ul class="patternbot-code-details patternbot-code-details-under patternbot-list-group list-group micro push-0">
+              <li class="push-1-8 relative">
+                <code>var(--color-secondary-light)</code>
+                <button class="center-contents-vertical patternbot-tool-btn pattern-copy-btn" title="Copy color: --color-secondary-light" aria-label="Copy color: --color-secondary-light" data-clipboard-text="var(--color-secondary-light)" hidden>
+                  <i class="icon i-18">
+                    <svg><use xlink:href="#icon-copy"></use></svg>
+                  </i>
+                </button>
+              </li>
+              <li class="patternbot-color-swatch-labels-hex push-1-8"><code>#fafafa</code></li>
+              <li class="patternbot-color-swatch-labels-rgba"><code>rgba(250, 250, 250, 1)</code></li>
             </ul>
           </li>
       </ul>

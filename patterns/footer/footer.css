@@ -1,0 +1,44 @@
+.footer .i-logo {
+  width: 3rem;
+  height: 3rem;
+}
+
+.footer .i-social {
+  width: 2rem;
+  height: 2rem;
+}
+
+.footer a {
+  color: var(--color-primary);
+  border: none;
+}
+
+.footer a:hover,
+.footer a:focus,
+.footer a:active {
+  color: var(--color-secondary-dark);
+}
+
+.footer {
+  text-align: center;
+}
+
+.nav-social a:hover,
+.nav-social a:focus,
+.nav-social a:active {
+  opacity: .4;
+}
+
+@media only screen and (min-width: 38em) {
+
+  .footer .i-logo {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .footer .i-social {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+}
