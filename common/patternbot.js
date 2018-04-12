@@ -101,7 +101,6 @@ const patternBotIncludes = function (manifest) {
     for (i = 0; i < t; i++) {
       if (rootMatcher.test(allScripts[i].src)) {
         return allScripts[i].src.split(rootMatcher)[0];
-        break;
       }
     }
   };
@@ -143,7 +142,7 @@ const patternBotIncludes = function (manifest) {
     let patternInfoJson;
     const data = patternElem.innerText.trim();
 
-    if (!data) return {}
+    if (!data) return {};
 
     try {
       patternInfoJson = JSON.parse(data);
@@ -172,9 +171,50 @@ const patternBotIncludes = function (manifest) {
     };
   };
 
+  const correctHrefPaths = function (html) {
+    const hrefSearch = /href\s*=\s*"\.\.\/\.\.\//g;
+    const srcSearch = /src\s*=\s*"\.\.\/\.\.\//g;
+    const urlSearch = /url\((["']*)\.\.\/\.\.\//g;
+
+    return html
+      .replace(hrefSearch, 'href="../')
+      .replace(srcSearch, 'src="../')
+      .replace(urlSearch, 'url($1../')
+    ;
+  };
+
+  const buildAccurateSelectorFromElem = function (elem) {
+    let theSelector = elem.tagName.toLowerCase();
+
+    if (elem.id) theSelector += `#${elem.id}`;
+    if (elem.getAttribute('role')) theSelector += `[role="${elem.getAttribute('role')}"]`;
+    if (elem.classList.length > 0) theSelector += `.${[].join.call(elem.classList, '.')}`;
+
+    theSelector += ':first-of-type';
+
+    return theSelector;
+  };
+
+  /**
+   * This is an ugly mess: Blink does not properly render SVGs when using DOMParser alone.
+   * But, I need DOMParser to determine the correct element to extract.
+   *
+   * I only want to get the first element within the `<body>` tag of the loaded document.
+   * This dumps the whole, messy, HTML document into a temporary `<div>`,
+   * then uses the DOMParser version, of the same element, to create an accurate selector,
+   * then finds that single element in the temporary `<div>` using the selector and returns it.
+   */
   const htmlStringToElem = function (html) {
+    let theSelector = '';
+    const tmpDoc = document.createElement('div');
+    const finalTmpDoc = document.createElement('div');
     const doc = (new DOMParser()).parseFromString(html, 'text/html');
-    return doc.body;
+
+    tmpDoc.innerHTML = html;
+    theSelector = buildAccurateSelectorFromElem(doc.body.firstElementChild);
+    finalTmpDoc.appendChild(tmpDoc.querySelector(theSelector));
+
+    return finalTmpDoc;
   };
 
   const replaceElementValue = function (elem, sel, data) {
@@ -197,7 +237,7 @@ const patternBotIncludes = function (manifest) {
 
     if (!patternDetails.html) return;
 
-    patternOutElem = htmlStringToElem(patternDetails.html);
+    patternOutElem = htmlStringToElem(correctHrefPaths(patternDetails.html));
     patternData = getPatternInfo(patternElem);
 
     Object.keys(patternData).forEach((sel) => {
@@ -234,7 +274,7 @@ const patternBotIncludes = function (manifest) {
   };
 
   const hideLoadingScreen = function () {
-    const allDownloadedInterval = setInterval(() => {
+    let allDownloadedInterval = setInterval(() => {
       if (Object.values(downloadedAssets).includes(false)) return;
 
       clearInterval(allDownloadedInterval);
@@ -347,10 +387,10 @@ const patternBotIncludes = function (manifest) {
 
 /** 
  * Patternbot library manifest
- * /Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library
- * @version 1523536234426
+ * /Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls
+ * @version 1523538396939
  */
-const patternManifest_1523536234426 = {
+const patternManifest_1523538396939 = {
   "commonInfo": {
     "modulifier": [
       "responsive",
@@ -519,7 +559,9 @@ const patternManifest_1523536234426 = {
           "primary": 0,
           "opposite": 255
         }
-      }
+      },
+      "bodyRaw": "Prosports Training is a hockey training facility that specializes in training younger athletes.\n",
+      "bodyBasic": "Prosports Training is a hockey training facility that specializes in training younger athletes."
     },
     "icons": [
       "twitter",
@@ -538,45 +580,50 @@ const patternManifest_1523536234426 = {
   },
   "patternLibFiles": {
     "commonParsable": {
-      "gridifier": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/common/grid.css",
-      "typografier": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/common/type.css",
-      "modulifier": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/common/modules.css",
-      "theme": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/common/theme.css"
+      "gridifier": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/common/grid.css",
+      "typografier": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/common/type.css",
+      "modulifier": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/common/modules.css",
+      "theme": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/common/theme.css"
     },
     "imagesParsable": {
-      "icons": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/images/icons.svg"
+      "icons": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/images/icons.svg"
     },
     "logos": {
-      "sizeLarge": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/images/logo.svg",
+      "sizeLarge": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/images/logo.svg",
       "size64": false,
       "size32": false,
       "size16": false,
       "sizeLargeLocal": "logo.svg"
     },
     "patterns": [
-      "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners",
-      "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/buttons",
-      "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards",
-      "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/footer",
-      "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms",
-      "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/header",
-      "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/video"
+      "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/banners",
+      "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/buttons",
+      "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/cards",
+      "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/footer",
+      "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/forms",
+      "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/header",
+      "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/video"
     ],
     "pages": [
       {
         "name": "checkout.html",
         "namePretty": "Checkout",
-        "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/pages/checkout.html"
+        "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/pages/checkout.html"
       },
       {
         "name": "clothing.html",
         "namePretty": "Clothing",
-        "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/pages/clothing.html"
+        "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/pages/clothing.html"
       },
       {
         "name": "home.html",
         "namePretty": "Home",
-        "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/pages/home.html"
+        "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/pages/home.html"
+      },
+      {
+        "name": "product-details.html",
+        "namePretty": "Product details",
+        "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/pages/product-details.html"
       }
     ]
   },
@@ -584,40 +631,40 @@ const patternManifest_1523536234426 = {
     {
       "name": "banners",
       "namePretty": "Banners",
-      "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners",
+      "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/banners",
       "html": [
         {
           "name": "call-to-action-banners",
           "namePretty": "Call to action banners",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners/call-to-action-banners.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/banners/call-to-action-banners.html",
           "localPath": "patterns/banners/call-to-action-banners.html",
           "readme": {}
         },
         {
           "name": "checkout-banner",
           "namePretty": "Checkout banner",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners/checkout-banner.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/banners/checkout-banner.html",
           "localPath": "patterns/banners/checkout-banner.html",
           "readme": {}
         },
         {
           "name": "details-page-banner",
           "namePretty": "Details page banner",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners/details-page-banner.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/banners/details-page-banner.html",
           "localPath": "patterns/banners/details-page-banner.html",
           "readme": {}
         },
         {
           "name": "intro-banner",
           "namePretty": "Intro banner",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners/intro-banner.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/banners/intro-banner.html",
           "localPath": "patterns/banners/intro-banner.html",
           "readme": {}
         },
         {
           "name": "no-btn-banner",
           "namePretty": "No btn banner",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners/no-btn-banner.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/banners/no-btn-banner.html",
           "localPath": "patterns/banners/no-btn-banner.html",
           "readme": {}
         }
@@ -626,7 +673,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "readme",
           "namePretty": "Readme",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners/README.md",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/banners/README.md",
           "localPath": "patterns/banners/README.md"
         }
       ],
@@ -634,7 +681,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "banners",
           "namePretty": "Banners",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners/banners.css",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/banners/banners.css",
           "localPath": "patterns/banners/banners.css"
         }
       ]
@@ -642,12 +689,12 @@ const patternManifest_1523536234426 = {
     {
       "name": "buttons",
       "namePretty": "Buttons",
-      "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/buttons",
+      "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/buttons",
       "html": [
         {
           "name": "buttons",
           "namePretty": "Buttons",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/buttons/buttons.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/buttons/buttons.html",
           "localPath": "patterns/buttons/buttons.html"
         }
       ],
@@ -655,7 +702,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "readme",
           "namePretty": "Readme",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/buttons/README.md",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/buttons/README.md",
           "localPath": "patterns/buttons/README.md"
         }
       ],
@@ -663,7 +710,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "buttons",
           "namePretty": "Buttons",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/buttons/buttons.css",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/buttons/buttons.css",
           "localPath": "patterns/buttons/buttons.css"
         }
       ]
@@ -671,33 +718,33 @@ const patternManifest_1523536234426 = {
     {
       "name": "cards",
       "namePretty": "Cards",
-      "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards",
+      "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/cards",
       "html": [
         {
           "name": "checkout-card",
           "namePretty": "Checkout card",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards/checkout-card.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/cards/checkout-card.html",
           "localPath": "patterns/cards/checkout-card.html",
           "readme": {}
         },
         {
           "name": "icon-card",
           "namePretty": "Icon card",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards/icon-card.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/cards/icon-card.html",
           "localPath": "patterns/cards/icon-card.html",
           "readme": {}
         },
         {
           "name": "preview-card",
           "namePretty": "Preview card",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards/preview-card.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/cards/preview-card.html",
           "localPath": "patterns/cards/preview-card.html",
           "readme": {}
         },
         {
           "name": "product-card",
           "namePretty": "Product card",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards/product-card.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/cards/product-card.html",
           "localPath": "patterns/cards/product-card.html",
           "readme": {}
         }
@@ -706,7 +753,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "readme",
           "namePretty": "Readme",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards/README.md",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/cards/README.md",
           "localPath": "patterns/cards/README.md"
         }
       ],
@@ -714,7 +761,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "cards",
           "namePretty": "Cards",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards/cards.css",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/cards/cards.css",
           "localPath": "patterns/cards/cards.css"
         }
       ]
@@ -722,12 +769,12 @@ const patternManifest_1523536234426 = {
     {
       "name": "footer",
       "namePretty": "Footer",
-      "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/footer",
+      "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/footer",
       "html": [
         {
           "name": "footer",
           "namePretty": "Footer",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/footer/footer.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/footer/footer.html",
           "localPath": "patterns/footer/footer.html",
           "readme": {}
         }
@@ -736,7 +783,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "readme",
           "namePretty": "Readme",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/footer/README.md",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/footer/README.md",
           "localPath": "patterns/footer/README.md"
         }
       ],
@@ -744,7 +791,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "footer",
           "namePretty": "Footer",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/footer/footer.css",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/footer/footer.css",
           "localPath": "patterns/footer/footer.css"
         }
       ]
@@ -752,52 +799,52 @@ const patternManifest_1523536234426 = {
     {
       "name": "forms",
       "namePretty": "Forms",
-      "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms",
+      "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/forms",
       "html": [
         {
           "name": "checkbox",
           "namePretty": "Checkbox",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/checkbox.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/forms/checkbox.html",
           "localPath": "patterns/forms/checkbox.html",
           "readme": {}
         },
         {
           "name": "numbers",
           "namePretty": "Numbers",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/numbers.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/forms/numbers.html",
           "localPath": "patterns/forms/numbers.html",
           "readme": {}
         },
         {
           "name": "password",
           "namePretty": "Password",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/password.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/forms/password.html",
           "localPath": "patterns/forms/password.html"
         },
         {
           "name": "radio-check",
           "namePretty": "Radio check",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/radio-check.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/forms/radio-check.html",
           "localPath": "patterns/forms/radio-check.html"
         },
         {
           "name": "select",
           "namePretty": "Select",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/select.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/forms/select.html",
           "localPath": "patterns/forms/select.html",
           "readme": {}
         },
         {
           "name": "text-area",
           "namePretty": "Text area",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/text-area.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/forms/text-area.html",
           "localPath": "patterns/forms/text-area.html",
           "readme": {}
         },
         {
           "name": "text",
           "namePretty": "Text",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/text.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/forms/text.html",
           "localPath": "patterns/forms/text.html",
           "readme": {}
         }
@@ -806,7 +853,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "readme",
           "namePretty": "Readme",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/README.md",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/forms/README.md",
           "localPath": "patterns/forms/README.md"
         }
       ],
@@ -814,7 +861,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "forms",
           "namePretty": "Forms",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/forms.css",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/forms/forms.css",
           "localPath": "patterns/forms/forms.css"
         }
       ]
@@ -822,12 +869,12 @@ const patternManifest_1523536234426 = {
     {
       "name": "header",
       "namePretty": "Header",
-      "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/header",
+      "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/header",
       "html": [
         {
           "name": "header",
           "namePretty": "Header",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/header/header.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/header/header.html",
           "localPath": "patterns/header/header.html",
           "readme": {}
         }
@@ -836,7 +883,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "readme",
           "namePretty": "Readme",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/header/README.md",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/header/README.md",
           "localPath": "patterns/header/README.md"
         }
       ],
@@ -844,7 +891,7 @@ const patternManifest_1523536234426 = {
         {
           "name": "header",
           "namePretty": "Header",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/header/header.css",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/header/header.css",
           "localPath": "patterns/header/header.css"
         }
       ]
@@ -852,12 +899,12 @@ const patternManifest_1523536234426 = {
     {
       "name": "video",
       "namePretty": "Video",
-      "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/video",
+      "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/video",
       "html": [
         {
           "name": "amanda",
           "namePretty": "Amanda",
-          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/video/amanda.html",
+          "path": "/Users/thegermandutchman/Desktop/Semester 4/Web Dev 4/ecommerce-pattern-library-pauls/patterns/video/amanda.html",
           "localPath": "patterns/video/amanda.html"
         }
       ],
@@ -885,5 +932,5 @@ const patternManifest_1523536234426 = {
   }
 };
 
-patternBotIncludes(patternManifest_1523536234426);
+patternBotIncludes(patternManifest_1523538396939);
 }());
