@@ -1,5 +1,5 @@
 ---
 footer:
   desc: |
-    Main footer to be used on all pages. Footer features navigation back to home page as well as social media links.
+    The footer is used on all pages. The footer features social media links as well as a link to the homepage.
 ---

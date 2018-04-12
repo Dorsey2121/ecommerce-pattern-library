@@ -1,5 +1,5 @@
 ---
 header:
   desc: |
-    Main header to be used across all pages. Works responsively on all screen sizes and features quick buttons for search, cart, and profile.
+    The header is used on all pages. The header is used to help users navigate arounf the website.
 ---

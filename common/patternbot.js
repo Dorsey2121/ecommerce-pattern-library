@@ -348,9 +348,9 @@ const patternBotIncludes = function (manifest) {
 /** 
  * Patternbot library manifest
  * /Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library
- * @version 1523489813452
+ * @version 1523536234426
  */
-const patternManifest_1523489813452 = {
+const patternManifest_1523536234426 = {
   "commonInfo": {
     "modulifier": [
       "responsive",
@@ -564,6 +564,16 @@ const patternManifest_1523489813452 = {
     ],
     "pages": [
       {
+        "name": "checkout.html",
+        "namePretty": "Checkout",
+        "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/pages/checkout.html"
+      },
+      {
+        "name": "clothing.html",
+        "namePretty": "Clothing",
+        "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/pages/clothing.html"
+      },
+      {
         "name": "home.html",
         "namePretty": "Home",
         "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/pages/home.html"
@@ -584,10 +594,31 @@ const patternManifest_1523489813452 = {
           "readme": {}
         },
         {
+          "name": "checkout-banner",
+          "namePretty": "Checkout banner",
+          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners/checkout-banner.html",
+          "localPath": "patterns/banners/checkout-banner.html",
+          "readme": {}
+        },
+        {
+          "name": "details-page-banner",
+          "namePretty": "Details page banner",
+          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners/details-page-banner.html",
+          "localPath": "patterns/banners/details-page-banner.html",
+          "readme": {}
+        },
+        {
           "name": "intro-banner",
           "namePretty": "Intro banner",
           "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners/intro-banner.html",
           "localPath": "patterns/banners/intro-banner.html",
+          "readme": {}
+        },
+        {
+          "name": "no-btn-banner",
+          "namePretty": "No btn banner",
+          "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/banners/no-btn-banner.html",
+          "localPath": "patterns/banners/no-btn-banner.html",
           "readme": {}
         }
       ],
@@ -646,31 +677,29 @@ const patternManifest_1523489813452 = {
           "name": "checkout-card",
           "namePretty": "Checkout card",
           "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards/checkout-card.html",
-          "localPath": "patterns/cards/checkout-card.html"
+          "localPath": "patterns/cards/checkout-card.html",
+          "readme": {}
         },
         {
           "name": "icon-card",
           "namePretty": "Icon card",
           "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards/icon-card.html",
-          "localPath": "patterns/cards/icon-card.html"
+          "localPath": "patterns/cards/icon-card.html",
+          "readme": {}
         },
         {
           "name": "preview-card",
           "namePretty": "Preview card",
           "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards/preview-card.html",
           "localPath": "patterns/cards/preview-card.html",
-          "readme": {
-            "width": 600
-          }
+          "readme": {}
         },
         {
           "name": "product-card",
           "namePretty": "Product card",
           "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/cards/product-card.html",
           "localPath": "patterns/cards/product-card.html",
-          "readme": {
-            "width": 500
-          }
+          "readme": {}
         }
       ],
       "md": [
@@ -730,18 +759,14 @@ const patternManifest_1523489813452 = {
           "namePretty": "Checkbox",
           "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/checkbox.html",
           "localPath": "patterns/forms/checkbox.html",
-          "readme": {
-            "width": 400
-          }
+          "readme": {}
         },
         {
           "name": "numbers",
           "namePretty": "Numbers",
           "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/numbers.html",
           "localPath": "patterns/forms/numbers.html",
-          "readme": {
-            "width": 400
-          }
+          "readme": {}
         },
         {
           "name": "password",
@@ -760,27 +785,21 @@ const patternManifest_1523489813452 = {
           "namePretty": "Select",
           "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/select.html",
           "localPath": "patterns/forms/select.html",
-          "readme": {
-            "width": 400
-          }
+          "readme": {}
         },
         {
           "name": "text-area",
           "namePretty": "Text area",
           "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/text-area.html",
           "localPath": "patterns/forms/text-area.html",
-          "readme": {
-            "width": 400
-          }
+          "readme": {}
         },
         {
           "name": "text",
           "namePretty": "Text",
           "path": "/Users/pauldorsey/Dropbox/semester 4/web dev 4/ecommerce-pattern-library/patterns/forms/text.html",
           "localPath": "patterns/forms/text.html",
-          "readme": {
-            "width": 400
-          }
+          "readme": {}
         }
       ],
       "md": [
@@ -866,5 +885,5 @@ const patternManifest_1523489813452 = {
   }
 };
 
-patternBotIncludes(patternManifest_1523489813452);
+patternBotIncludes(patternManifest_1523536234426);
 }());

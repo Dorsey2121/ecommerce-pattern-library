@@ -1,16 +1,16 @@
 ---
-category-cards:
-  width: 600
+icon-card:
   desc: |
-    The category card is used on the home page to preview the different category of products that are available.
+    The icon card is used on the home page to help navigate the user to other pages.
 preview-card:
-  width: 600
   desc: |
-    The preview card is used to preview a highlighted special or product on the home page.
+    The preview card is used to show a preview of items being sold.
 product-card:
-  width: 500
   desc: |
-    The product card is used for listing products for sale. They are linked to the products page.
+    The product card is used to give an in-depth description of the product that was selected.
+checkout-card:
+  desc: |
+    The checkout card is used on the checkout page for the items selected.
 ---
 
-  Cards are used to present important pieces of information such as products or deals. They are used to give the user a preview and an easy link to more information.
+  Cards are used as a preview and helps navigate the user.

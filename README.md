@@ -4,14 +4,15 @@ fonturl: "https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400
 
 fonts:
   primary: |
-    The Primary typeface is a compressed Sans-serif font that shows the strength and professionalism of our company. The secondary typeface pairs well with the primary typeface in both height and weight.
+    The Primary typeface represents a strong serif face with a large X-height.  This makes it very easy and pleasent to read on screens. This represents our company as it is clean and professional like our business.
 
-    Use the Primary typeface for headings, buttons and captions.
+    Use the Primary typeface for body copy.
 
   secondary: |
-    The secondary typeface represents a strong serif face with a large X-height.  This makes it very easy and pleasent to read on screens. This represents our company as it is clean and professional like our business.
+    The Secondary typeface is a compressed Sans-serif font that shows the strength and professionalism of our company. The secondary typeface pairs well with the primary typeface in both height and weight.
 
-    Use the secondary typeface for body copy.
+    Use the Secondary typeface for headings, buttons and captions.
+
 colors:
   primary: |
     The primary color represents the primary color in the logo.
